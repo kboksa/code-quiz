@@ -2,6 +2,11 @@
 var start = document.querySelector("#start-button");
 // STEP 2: Once the user clicks the start button they are prompted with a questions
 // STEP 2 (A):  As soon as the user starts the quiz the timer starts to run down
+var timeLeft =document.getElementById("timer");
+var secondsLeft = 60;
+var questionNumer = 0;
+var totalScore = 0;
+var questionsCount =1;
 function countdown()[
     var timerInterval = setInterval(function (){
         secondLeft--;
