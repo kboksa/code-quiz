@@ -3,6 +3,7 @@ var welcome = document.querySelector("#introduction");
 var start = document.querySelector("#start-button");
 var into = document.querySelector("#intro");
 var question = document.querySelector("#questions");
+var askQuestion = document.querySelector("#ask-question");
 
 start.addEventListener("click", startQuiz);
 
@@ -57,6 +58,11 @@ var questionSource = [
     answer: "c",
   },
 ];
+var choiceButtons = document.querySelectorAll("#choices");
+var answer1 = document.querySelector("#answer1");
+var answer2 = document.querySelector("#answer2");
+var answer3 = document.querySelector("#answer3");
+var answer4 = document.querySelector("#answer4");
 
 // STEP 2 (A):  As soon as the user starts the quiz the timer starts to run down
 var timeLeft = document.getElementById("timer");
@@ -85,7 +91,7 @@ function startQuiz() {
   questions.style.display = "block";
   questionNumer = 0;
   countdown();
-  showQuestion(questionNumer);
+  questionSource(questionNumer);
 }
 // STEP 3: The user is told whether they get the answer right or wrong
 // STEP3(A):    The user is able to click to the next question when they answer the question
