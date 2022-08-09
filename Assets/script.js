@@ -64,8 +64,16 @@ var answer2 = document.querySelector("#answer2");
 var answer3 = document.querySelector("#answer3");
 var answer4 = document.querySelector("#answer4");
 
+function showQuestion(n) {
+  askQuestion.textContent = questionSource[n].question;
+  answer1.textContent = questionSource[n].choices[0];
+  answer2.textContent = questionSource[n].choices[2];
+  answer3.textContent = questionSource[n].choices[3];
+  answer4.textContent = questionSource[n].choices[4];
+  questionNumer = n;
+}
 // STEP 2 (A):  As soon as the user starts the quiz the timer starts to run down
-var timeLeft = document.getElementById("timer");
+var timeLeft = document.getElementById("#timer");
 var secondsLeft = 60;
 var questionNumer = 0;
 var totalScore = 0;
