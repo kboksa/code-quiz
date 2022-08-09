@@ -11,7 +11,7 @@ start.addEventListener("click", startQuiz);
 var questionSource = [
   {
     question: "Question 1: Javascript is an _______ language?",
-    chocies: [
+    choices: [
       "a. Object-Oriented",
       "b. Object-Based",
       "c. Procedural",
@@ -22,7 +22,7 @@ var questionSource = [
   {
     question:
       "Question 2: Which of the following methods can be used to display data in some form using Javascript?",
-    chocies: [
+    choices: [
       "a. document.write()",
       "b. console.log()",
       "c. window.alert()",
@@ -33,13 +33,13 @@ var questionSource = [
   {
     question:
       "Question 3: When an operators value is NULL, the typeof returned by the unary operator is: ",
-    chocies: ["a. Boolean", "b. Undefined", "c. Object", "d. Integer"],
+    choices: ["a. Boolean", "b. Undefined", "c. Object", "d. Integer"],
     answer: "c",
   },
   {
     question:
       "Question 4: Which function is used to serialize an object into a JSON string in Javascript? ",
-    chocies: [
+    choices: [
       "a. stringify()",
       "b. parse()",
       "c. convert()",
@@ -49,7 +49,7 @@ var questionSource = [
   },
   {
     question: "Question 4: How to stop an interval timer in Javascript?",
-    chocies: [
+    choices: [
       "a. clearTimer",
       "b. intervalOver",
       "c. clearInterval",
@@ -67,13 +67,13 @@ var answer4 = document.querySelector("#answer4");
 function showQuestion(n) {
   askQuestion.textContent = questionSource[n].question;
   answer1.textContent = questionSource[n].choices[0];
-  answer2.textContent = questionSource[n].choices[2];
-  answer3.textContent = questionSource[n].choices[3];
-  answer4.textContent = questionSource[n].choices[4];
+  answer2.textContent = questionSource[n].choices[1];
+  answer3.textContent = questionSource[n].choices[2];
+  answer4.textContent = questionSource[n].choices[3];
   questionNumer = n;
 }
 // STEP 2 (A):  As soon as the user starts the quiz the timer starts to run down
-var timeLeft = document.getElementById("#timer");
+var timeLeft = document.getElementById("timer");
 var secondsLeft = 60;
 var questionNumer = 0;
 var totalScore = 0;
@@ -85,7 +85,7 @@ function countdown() {
 
     if (secondsLeft <= 0) {
       clearInterval(timerInterval);
-      timerLeft.textContent = "Time is up!";
+      timeLeft.textContent = "Time is up!";
       finish.textContent = "Time is up!";
       gameOver();
     } else if (questionCount >= questionSource.length + 1) {
@@ -99,7 +99,7 @@ function startQuiz() {
   questions.style.display = "block";
   questionNumer = 0;
   countdown();
-  questionSource(questionNumer);
+  showQuestion(questionNumer);
 }
 // STEP 3: The user is told whether they get the answer right or wrong
 // STEP3(A):    The user is able to click to the next question when they answer the question
