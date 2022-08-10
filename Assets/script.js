@@ -76,6 +76,11 @@ var answer3 = document.querySelector("#answer3");
 var answer4 = document.querySelector("#answer4");
 var check = document.querySelector("#check");
 
+answer1.addEventListener("click", checkAnswer);
+answer2.addEventListener("click", checkAnswer);
+answer3.addEventListener("click", checkAnswer);
+answer4.addEventListener("click", checkAnswer);
+
 function showQuestion(n) {
   askQuestion.textContent = questionSource[n].question;
   answer1.textContent = questionSource[n].choices[0];
@@ -117,10 +122,11 @@ function startQuiz() {
 function checkAnswer(event) {
   event.preventDefault();
   check.style.display = "block";
-  setTimeout(function () {
-    check.style.display = "none";
-  }, 1000);
-  if (questionSource[questionNumber].answer == event.target.value) {
+  //   setTimeout(function () {
+  //     check.style.display = "none";
+  //   }, 1000);
+  console.log(questionSource[questionNumer]);
+  if (questionSource[questionNumer].answer == event.target.value) {
     check.textContent = "Correct!";
     totalScore = totalScore + 1;
   } else {
@@ -146,10 +152,6 @@ function gameOver() {
   finalScore.textContent = "Your final score is :" + totalScore;
   timeLeft.style.display = "none";
 }
-
-choiceButtons.forEach(function (click) {
-  click.addEventListener("click", checkAnswer);
-});
 
 // STEP3(A):    The user is able to click to the next question when they answer the question
 
