@@ -1,9 +1,20 @@
 // STEP 1: Create a start button the user can click and begin the game
 var welcome = document.querySelector("#introduction");
 var start = document.querySelector("#start-button");
-var into = document.querySelector("#intro");
+var intro = document.querySelector("#intro");
 var question = document.querySelector("#questions");
 var askQuestion = document.querySelector("#ask-question");
+var scoreBoard = document.querySelector("#submit");
+var finalScore = document.querySelector("#final-score");
+var userInitial = document.querySelector("#inital");
+var submitBtn = document.querySelector("#submit-button");
+var highScore = document.querySelector("#highscore");
+var scoreRecord = document.querySelector("#score-record");
+var scoreCheck = document.querySelector("#score");
+var finish = document.querySelector("#finish");
+
+var back = document.querySelector("#back");
+var clear = document.querySelector("#clear");
 
 start.addEventListener("click", startQuiz);
 
@@ -63,6 +74,7 @@ var answer1 = document.querySelector("#answer1");
 var answer2 = document.querySelector("#answer2");
 var answer3 = document.querySelector("#answer3");
 var answer4 = document.querySelector("#answer4");
+var check = document.querySelector("#check");
 
 function showQuestion(n) {
   askQuestion.textContent = questionSource[n].question;
@@ -102,10 +114,137 @@ function startQuiz() {
   showQuestion(questionNumer);
 }
 // STEP 3: The user is told whether they get the answer right or wrong
+function checkAnswer(event) {
+  event.preventDefault();
+  check.style.display = "block";
+  setTimeout(function () {
+    check.style.display = "none";
+  }, 1000);
+  if (questionSource[questionNumber].answer == event.target.value) {
+    check.textContent = "Correct!";
+    totalScore = totalScore + 1;
+  } else {
+    secondsLeft = secondsLeft - 10;
+    check.textContent =
+      "Wrong! The correct answer is " +
+      questionSource[questionNumer].answer +
+      " .";
+  }
+  if (questionNumer < questionSource.length - 1) {
+    showQuestion(questionNumer + 1);
+  } else {
+    gameOver();
+  }
+  {
+    questionCount++;
+  }
+}
+function gameOver() {
+  question.style.display = "none";
+  scoreBoard.style.display = "block";
+  console.log(scoreBoard);
+  finalScore.textContent = "Your final score is :" + totalScore;
+  timeLeft.style.display = "none";
+}
+
+choiceButtons.forEach(function (click) {
+  click.addEventListener("click", checkAnswer);
+});
+function gameOver() {
+  question.style.display = "none";
+  scoreBoard.style.display = "block";
+  console.log(scoreBoard);
+  finalScore.textContent = "Your final score is :" + totalScore;
+  timeLeft.style.display = "none";
+}
 // STEP3(A):    The user is able to click to the next question when they answer the question
 
 // STEP 4: Once they have competed the quiz the intial their name into a high score list.
 
 // STEP 5: the user is able to view the highscore list that is saved
+function getScore() {
+  var currentList = localStorage.getItem("ScoreList");
+  if (currentList !== null) {
+    freshList = JSON.parse(currentList);
+    return freshList;
+  } else {
+    freshList = [];
+  }
+  return freshList;
+}
 
-// STEP 6: The user is able to retake the quiz
+function renderScore() {
+  scoreRecord.innerHTML = "";
+  scoreRecord.style.display = "block";
+  var highScores = sort();
+  // Slice the high score array to only show the top five high scores.
+  var topFive = highScores.slice(0, 5);
+  for (var i = 0; i < topFive.length; i++) {
+    var item = topFive[i];
+    // Show the score list on score board
+    var li = document.createElement("li");
+    li.textContent = item.user + " - " + item.score;
+    li.setAttribute("data-index", i);
+    scoreRecord.appendChild(li);
+  }
+}
+
+function sort() {
+  var unsortedList = getScore();
+  if (getScore == null) {
+    return;
+  } else {
+    unsortedList.sort(function (a, b) {
+      return b.score - a.score;
+    });
+    return unsortedList;
+  }
+}
+
+function addItem(n) {
+  var addedList = getScore();
+  addedList.push(n);
+  localStorage.setItem("ScoreList", JSON.stringify(addedList));
+}
+
+function saveScore() {
+  var scoreItem = {
+    user: userInitial.value,
+    score: totalScore,
+  };
+  addItem(scoreItem);
+  renderScore();
+}
+
+submit.addEventListener("click", function (event) {
+  event.preventDefault();
+  scoreBoard.style.display = "none";
+  intro.style.display = "none";
+  highScore.style.display = "block";
+  question.style.display = "none";
+  saveScore();
+});
+
+scoreCheck.addEventListener("click", function (event) {
+  event.preventDefault();
+  scoreBoard.style.display = "none";
+  intro.style.display = "none";
+  highScore.style.display = "block";
+  question.style.display = "none";
+  renderScore();
+});
+
+back.addEventListener("click", function (event) {
+  event.preventDefault();
+  scoreBoard.style.display = "none";
+  intro.style.display = "block";
+  highScore.style.display = "none";
+  question.style.display = "none";
+  location.reload();
+});
+
+clear.addEventListener("click", function (event) {
+  event.preventDefault();
+  localStorage.clear();
+  renderScore();
+});
