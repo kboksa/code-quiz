@@ -150,13 +150,7 @@ function gameOver() {
 choiceButtons.forEach(function (click) {
   click.addEventListener("click", checkAnswer);
 });
-function gameOver() {
-  question.style.display = "none";
-  scoreBoard.style.display = "block";
-  console.log(scoreBoard);
-  finalScore.textContent = "Your final score is :" + totalScore;
-  timeLeft.style.display = "none";
-}
+
 // STEP3(A):    The user is able to click to the next question when they answer the question
 
 // STEP 4: Once they have competed the quiz the intial their name into a high score list.
@@ -216,7 +210,7 @@ function saveScore() {
   renderScore();
 }
 
-submit.addEventListener("click", function (event) {
+submitBtn.addEventListener("click", function (event) {
   event.preventDefault();
   scoreBoard.style.display = "none";
   intro.style.display = "none";
