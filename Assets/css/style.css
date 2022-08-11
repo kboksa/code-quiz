@@ -8,7 +8,7 @@
   display: none;
 }
 body {
-  background-image: url("https://cdn.pixabay.com/photo/2018/08/21/23/29/forest-3622519_1280.jpg");
+  background-image: url("https://media.istockphoto.com/photos/sea-sand-on-blue-wooden-floortop-view-with-copy-space-picture-id1034297446?k=20&m=1034297446&s=612x612&w=0&h=czphF7-SugdCFouO4_mUaU-YU8iMIcRqbqqHIfirfwA=");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -39,5 +39,14 @@ ul {
 .button {
   border-radius: 10px;
   padding: 10px;
-  background-color: darkolivegreen;
+  background-color: wheat;
+}
+
+@media screen and (max-width: 768px) {
+  header,
+  section,
+  footer,
+  main {
+    flex-direction: column;
+  }
 }
