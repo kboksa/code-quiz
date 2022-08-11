@@ -1,6 +1,43 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
 #check,
 .highscore,
 .submit,
-.question {
+.questions {
   display: none;
+}
+body {
+  background-image: url("https://cdn.pixabay.com/photo/2018/08/21/23/29/forest-3622519_1280.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+main {
+  text-align: center;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.button {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: darkolivegreen;
 }
